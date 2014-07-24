@@ -7,7 +7,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
-import java.util.logging.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,12 +17,13 @@ import java.util.regex.Pattern;
  */
 public class Ticket {
 
+    // ID number of ticket
     private int id;
+    // Description of ticket
     private String title;
+    // Date object representing date created of the ticket
     private Date timeCreated;
     // Used to construct a java Date object from the result set
-    private static final DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-    private static final DateFormat df2 = new SimpleDateFormat("yyyy MM dd");
     private static final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     /**
@@ -36,13 +36,10 @@ public class Ticket {
         try {
             // Extract info from current ticket in resultset
             id = rs.getInt("ID");
-            //System.out.println(id);
             title = rs.getString("TITLE");
-            //System.out.println(title);
             String time = rs.getString("CREATED");
             Scanner s = new Scanner(time);
             timeCreated = dateFormat.parse(s.next());
-            //System.out.println(timeCreated);
         } catch (SQLException ex) {
             System.err.println("Unable to read entry");
         } catch (ParseException ex) {
@@ -50,6 +47,10 @@ public class Ticket {
         }
     }
 
+    /**
+     * Return the date within a title string.
+     * Different types of tickets have different date formats.
+     */
     public Date extractDateFromTitle() {
         Scanner scan = new Scanner(title);
         String s = scan.next();
@@ -59,7 +60,10 @@ public class Ticket {
         else
             return null;
     }
-
+    
+    /*
+    * Given a string, extract the date from it using Regex.
+    */
     private static Date getDate(String desc) {
         Scanner scan = new Scanner(desc);
         String s = scan.next();
@@ -88,11 +92,17 @@ public class Ticket {
 
         return null;
     }
-
+    
+    /**
+     * Return ticket ID. 
+     */
     public int getID() {
         return id;
     }
 
+    /**
+     * Return string representation of a ticket.
+     */
     @Override
     public String toString() {
         return "T#: " + id + " (" + timeCreated.toString().substring(0, 10) + ")";
