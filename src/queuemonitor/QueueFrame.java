@@ -21,15 +21,19 @@ public class QueueFrame extends JFrame{
     private JTextArea delaysTA;
     private JTextArea deptsTA;
     private JTextArea statsTA;
-    private Font textAreaFont;
-    private Color green;
-    private Color red;
+    // Font for Arrivals, Deptartures, and Delays
+    private final Font nonStatsFont;
+    // Font for Statistics (Exchange Rates)
+    private final Font statsFont;
+    private final Color green;
+    private final Color red;
     
     /**
      * Create a new QueueFrame.
      */
     public QueueFrame() {
-        textAreaFont = new Font("Arial", Font.PLAIN, 60);
+        nonStatsFont = new Font("Arial", Font.PLAIN, 50);
+        statsFont = new Font("Arial", Font.PLAIN, 40);
         green = new Color(70, 165, 70);
         red = new Color(246, 98, 98);
         initComponents();
@@ -52,13 +56,13 @@ public class QueueFrame extends JFrame{
         
         // Set textareas to correct font
         
-        arrivalsTA.setFont(textAreaFont);
+        arrivalsTA.setFont(nonStatsFont);
         arrivalsTA.setText("Arrivals:\n");
-        delaysTA.setFont(textAreaFont);
+        delaysTA.setFont(nonStatsFont);
         delaysTA.setText("Delays:\n");
-        deptsTA.setFont(textAreaFont);
+        deptsTA.setFont(nonStatsFont);
         deptsTA.setText("Departures:\n");
-        statsTA.setFont(textAreaFont);
+        statsTA.setFont(statsFont);
         statsTA.setText("Statistics:\n");
         
         // Create black border around each text area
@@ -107,7 +111,7 @@ public class QueueFrame extends JFrame{
         } else {
             arrivalsTA.setBackground(red);
         }
-        arrivalsTA.setFont(textAreaFont);
+        arrivalsTA.setFont(nonStatsFont);
         arrivalsTA.setEditable(false);
     }
 
@@ -118,7 +122,7 @@ public class QueueFrame extends JFrame{
         } else {
             deptsTA.setBackground(red);
         }
-        deptsTA.setFont(textAreaFont);
+        deptsTA.setFont(nonStatsFont);
         deptsTA.setEditable(false);
     }
 
@@ -129,13 +133,13 @@ public class QueueFrame extends JFrame{
         } else {
             delaysTA.setBackground(red);
         }
-        delaysTA.setFont(textAreaFont);
+        delaysTA.setFont(nonStatsFont);
         delaysTA.setEditable(false);
     }
 
     public void updateStats(String string) {
         statsTA.setText("Exchange Rates:\n\n" + string);
-        statsTA.setFont(textAreaFont);
+        statsTA.setFont(statsFont);
         statsTA.setBackground(green);
         statsTA.setEditable(false);
     }
