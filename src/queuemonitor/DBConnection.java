@@ -35,7 +35,7 @@ public class DBConnection {
             // Register a JDBC driver
             Class.forName("com.mysql.jdbc.Driver");
             // Open a connection to database
-            System.out.println("Connecting to database...");
+            //System.out.println("Connecting to database...");
             connection = DriverManager.getConnection(DB_URL, USER, PASS);
         } catch(SQLException ex) {
             System.err.println("Error connecting to DB");
@@ -67,7 +67,7 @@ public class DBConnection {
             return null;
         }
         // Create a statment in order to execute the query
-        System.out.println("Creating statement...");
+        //System.out.println("Creating statement...");
         Statement statm = null;
         ResultSet rs = null;
         try {

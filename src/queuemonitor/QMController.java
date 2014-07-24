@@ -31,7 +31,7 @@ public class QMController {
     private ArrayList<Ticket> deptTickets;
     private ArrayList<Ticket> delayedTickets;
     // View of the QMFrame
-    private QMFrame frame;
+    private QueueFrame frame;
 
     /**
      * Creates a QMController. Initialize the connection to the KACE server, the
@@ -48,7 +48,7 @@ public class QMController {
         delayedTickets = new ArrayList<Ticket>();
 
         // Initialize the view
-        frame = new QMFrame();
+        frame = new QueueFrame();
         frame.setVisible(true);
 
         // Set up the Timer
@@ -144,7 +144,7 @@ public class QMController {
                     + "where HD_TICKET.HD_QUEUE_ID = 1\n"
                     + "and (HD_STATUS.STATE = 'opened' or HD_STATUS.STATE = 'stalled')");
             
-            System.out.println("Finished query");
+            //System.out.println("Finished query");
 
             /*
              ResultSetMetaData rsmd = delayedTicks.getMetaData();
